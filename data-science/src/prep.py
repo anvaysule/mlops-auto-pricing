@@ -33,21 +33,21 @@ def main(args):  # Write the function name for the main data preparation logic
     # ------- WRITE YOUR CODE HERE -------
 
     # Step 1: Perform label encoding to convert categorical features into numerical values for model compatibility.  
-	label_encoder = LabelEncoder()
+    label_encoder = LabelEncoder()
     df['Type'] = label_encoder.fit_transform(df['Type'])
 	
     # Step 2: Split the dataset into training and testing sets using train_test_split with specified test size and random state.  
-	train_df, test_df = train_test_split(df, test_size=args.test_train_ratio, random_state=42)
+    train_df, test_df = train_test_split(df, test_size=args.test_train_ratio, random_state=42)
 	
     # Step 3: Save the training and testing datasets as CSV files in separate directories for easier access and organization.  
-	os.makedirs(args.train_data, exist_ok=True)
+    os.makedirs(args.train_data, exist_ok=True)
     os.makedirs(args.test_data, exist_ok=True)
     train_df.to_csv(os.path.join(args.train_data, "train.csv"), index=False)
     test_df.to_csv(os.path.join(args.test_data, "test.csv"), index=False)
 	
 	
     # Step 4: Log the number of rows in the training and testing datasets as metrics for tracking and evaluation. 
-	mlflow.log_metric('train size', train_df.shape[0])
+    mlflow.log_metric('train size', train_df.shape[0])
     mlflow.log_metric('test size', test_df.shape[0])	
 
 
@@ -70,3 +70,4 @@ if __name__ == "__main__":
     main(args)
 
     mlflow.end_run()
+    #Completed
