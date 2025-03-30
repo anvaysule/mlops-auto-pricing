@@ -23,6 +23,7 @@ def parse_args():
                         help='The function to measure the quality of a split')
     parser.add_argument('--max_depth', type=int, default=None,
                         help='The maximum depth of the tree. If None, then nodes are expanded until all the leaves contain less than min_samples_split samples.')
+    parser.add_argument("--n_estimators", type=int, default=100) 
     
     # -------- WRITE YOUR CODE HERE --------
     
@@ -86,3 +87,4 @@ if __name__ == "__main__":
     main(args)
 
     mlflow.end_run()
+
